@@ -15,35 +15,36 @@ class ProjectsPage extends StatefulWidget {
 
 class _ProjectPagesState extends State<ProjectsPage> {
   final List<ProjectTile> projectList = [];
+  late AssetBundle rootBundle;
 
   @override
-  Widget build(BuildContext context)  {
+  Widget build(BuildContext context) {
     return FutureBuilder<List<ProjectTile>>(
-      future: loadUpList(),
-      builder:(context, snapshot) {
-       return Container(
-          width: double.infinity,
-          height: 900,
-          color: Colors.white,
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Text("Projects",
-                style: landingPageText().copyWith(color: mainColor),
-              ),
-              ListView.builder(
-                  itemCount: 3,
-                  shrinkWrap: true,
-                  itemBuilder: (context, index) => snapshot.data?[index])
-            ],
-          ),
-        );
-       }
+        future: loadUpList(),
+        builder: (context, snapshot) {
+          return Container(
+            width: double.infinity,
+            height: 900,
+            color: Colors.white,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text("Projects",
+                  style: landingPageText().copyWith(color: mainColor),
+                ),
+                ListView.builder(
+                    itemCount: 3,
+                    shrinkWrap: true,
+                    itemBuilder: (context, index) => snapshot.data?[index])
+              ],
+            ),
+          );
+        }
     );
   }
 
-  Future<List<ProjectTile>>loadUpList() async {
-    projectList.add(await jsonToTile("projects/homesaver.json"));
+  Future<List<ProjectTile>> loadUpList() async {
+    projectList.add(await jsonToTile("assets/projects/homesaver.json"));
     projectList.add(await jsonToTile("assets/projects/personal_site.json"));
     projectList.add(await jsonToTile("assets/projects/Manufacturable.json"));
     return projectList;
@@ -51,7 +52,7 @@ class _ProjectPagesState extends State<ProjectsPage> {
 
 
   jsonToTile(String path) async {
-    var response = await rootBundle.loadString(path);
+    var response = await DefaultAssetBundle.of(context).loadString(path);
     print(response);
     var data = await jsonDecode(response);
     String title = data["title"];
@@ -69,3 +70,5 @@ class _ProjectPagesState extends State<ProjectsPage> {
       stack: stack,);
   }
 }
+
+

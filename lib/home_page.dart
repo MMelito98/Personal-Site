@@ -64,7 +64,7 @@ class _MyHomePageState extends State<MyHomePage> {
               children: [
                 Container(
                   width: 500,
-                  child: Image.asset("me.jpeg",
+                  child: Image.asset("assets/me.jpeg",
                     fit: BoxFit.contain,),
                 ),
                 const SizedBox(

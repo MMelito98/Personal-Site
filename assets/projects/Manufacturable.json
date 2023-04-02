@@ -1,7 +1,7 @@
 {
-  "title": "Manufacturable",
+  "title": "Poka Yoke",
   "desc": "This is a list to track issues seen in a manufacturing environment. Working in manufacturing in my day job I am planning on testing at work.",
-  "start": "June 2022",
+  "start": "March 2023",
   "status": "Actively working on",
   "stack": "Flutter",
   "platform": "IOS and Android"
